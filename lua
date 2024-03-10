@@ -20,28 +20,29 @@ local Tabs = {
 
 local Options = Fluent.Options
 
-local playerName = game.Players.LocalPlayer.Name
+local player = game.Players.LocalPlayer.Name
 
 Tabs.General:AddParagraph({
     Title = "Name",
-    Content = "PlayerName: " .. playerName
+    Content = "PlayerName: " .. player
 })
 
 
-local function updateGoldValue()
-    while true do
-        local goldValue = game.Players.LocalPlayer.Data.Gold.Value
+local goldValue = player.Data.Gold.Value
 
-        Tabs.General:AddParagraph({
-            Title = "Paragraph",
-            Content = "Gold Value: " .. goldValue
-        })
+local GoldDisplay = Tabs.General:AddParagraph({
+    Title = "Gold",
+    Content = "Gold: " .. goldValue
+})
 
-        wait()
-    end
+local function UpdateGoldValue(newValue)
+    GoldDisplay.Content = "Gold: " .. newValue
 end
 
-coroutine.wrap(updateGoldValue)()
+player.Data.Gold:GetPropertyChangedSignal("Value"):Connect(function()
+    local newGoldValue = player.Data.Gold.Value
+    UpdateGoldValue(newGoldValue)
+end)
 
 
 

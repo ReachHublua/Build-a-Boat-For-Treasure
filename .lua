@@ -20,6 +20,8 @@ Library:SetWatermark('ReachHub')
 
 local Tab1_left = Tabs.Tab1:AddLeftGroupbox('\\\\ Main  //')
 local Tab1_right = Tabs.Tab1:AddRightGroupbox('\\\\ Settings //')
+local Tab1_left2 = Tabs.Tab1:AddLeftGroupbox('\\\\  Equipment  //')
+
 
 
 local SafeZone = Instance.new("Part")
@@ -95,7 +97,7 @@ end)
 
 
 Tab1_right:AddToggle('MyToggle', {
-    Text = 'White_Screen',
+    Text = 'White Screen',
     Default = false, 
     Tooltip = 'White_Screen',
     Callback = function(t)
@@ -115,6 +117,37 @@ spawn(function()
         end
     end
 end)
+
+
+Tab1_right:AddToggle('MyToggle', {
+    Text = 'Anti AFK',
+    Default = false, 
+    Tooltip = '',
+    Callback = function(ah)
+    _G.Ato = ah
+while _G.Ato do wait()
+game:GetService'VirtualUser':CaptureController()
+game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+end
+    end
+})
+
+local function updatePaintingToolLabel()
+ local hasPaintingTool = false
+
+ for _, item in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+  if item.name == "PaintingTool" then
+   hasPaintingTool = true
+   break
+  end
+ end
+
+ if hasPaintingTool then
+  Tab1_left2:AddLabel("PaintingTool : 🟢")
+ else
+  Tab1_left2:AddLabel("PaintingTool :  🔴")
+ end
+end
 
 
 

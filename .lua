@@ -1,3 +1,27 @@
+
+repo = 'https://raw.githubusercontent.com/ReachHublua/UI/main/'
+Library = loadstring(game:HttpGet(repo .. 'LinoriaLib.lua'))()
+ThemeManager = loadstring(game:HttpGet(repo .. 'ThemeManager.lua'))()
+SaveManager = loadstring(game:HttpGet(repo .. 'SaveManager.lua'))()
+
+
+local Window = Library:CreateWindow({
+  Title = 'ReachHub - Build a boat for treasure | '..os.date('%A, %B %d %Y'),
+  Center = true,
+  AutoShow = true,
+})
+
+local Tabs = {
+  Tab1 = Window:AddTab('Farm'),
+  ['UI Settings'] = Window:AddTab('UI Settings')
+}
+
+Library:SetWatermark('ReachHub')
+
+local Tab1_left = Tabs.Tab1:AddLeftGroupbox('\\\\ Main  //')
+local Tab1_right = Tabs.Tab1:AddRightGroupbox('\\\\ Settings //')
+
+
 local SafeZone = Instance.new("Part")
 SafeZone.Size = Vector3.new(10,3,10)
 SafeZone.Position = Vector3.new(-70, 50, 8756)
@@ -48,32 +72,6 @@ end
 end
 
 
-
-
-
-repo = 'https://raw.githubusercontent.com/ReachHublua/UI/main/'
-Library = loadstring(game:HttpGet(repo .. 'LinoriaLib.lua'))()
-ThemeManager = loadstring(game:HttpGet(repo .. 'ThemeManager.lua'))()
-SaveManager = loadstring(game:HttpGet(repo .. 'SaveManager.lua'))()
-
-
-local Window = Library:CreateWindow({
-  Title = 'ReachHub - Build a boat for treasure | '..os.date('%A, %B %d %Y'),
-  Center = true,
-  AutoShow = true,
-})
-
-local Tabs = {
-  Tab1 = Window:AddTab('Farm'),
-  Tab2 = Window:AddTab('TP'),
-  ['UI Settings'] = Window:AddTab('UI Settings')
-}
-
-Library:SetWatermark('ReachHub')
-
-local Tab1_left = Tabs.Tab1:AddLeftGroupbox('\\\\ Main  //')
-local Tab1_right = Tabs.Tab1:AddRightGroupbox('\\\\ Settings //')
-
 Tab1_left:AddToggle('MyToggle', {
     Text = 'Auto Farm',
     Default = false, 
@@ -83,7 +81,6 @@ Tab1_left:AddToggle('MyToggle', {
     end
 })
 
--- Loop Function
 
 spawn(function()
 while wait(0.5) do
@@ -94,32 +91,6 @@ if _G.WaitingF == false then
 end
 end
 end)
-
-
-
-Tab1_right:AddToggle('MyToggle', {
-    Text = '',
-    Default = false, 
-    Tooltip = 'Auto farm mob',
-    Callback = function(Value)
-    _G.White_Screen = Value
-    end
-})
-
-
-spawn(function()
-while wait() do
-if _G.White_Screen then
-    game:GetService("RunService"):Set3dRenderingEnabled(false)
-else
-    game:GetService("RunService"):Set3dRenderingEnabled(true)
-end
-                end
-        end
-  end)
-
-
-
 
 ThemeManager:SetLibrary(Library)
 SaveManager:SetLibrary(Library)

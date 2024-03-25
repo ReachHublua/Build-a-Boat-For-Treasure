@@ -132,22 +132,8 @@ end
     end
 })
 
-local function updatePaintingToolLabel()
- local hasPaintingTool = false
+Tab1_left2:AddLabel("PaintingTool : 🟢") -- ถ้าไม่มี  🔴
 
- for _, item in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-  if item.name == "PaintingTool" then
-   hasPaintingTool = true
-   break
-  end
- end
-
- if hasPaintingTool then
-  Tab1_left2:AddLabel("PaintingTool : 🟢")
- else
-  Tab1_left2:AddLabel("PaintingTool :  🔴")
- end
-end
 
 
 

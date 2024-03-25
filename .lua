@@ -93,27 +93,29 @@ end
 end)
 
 
+
 Tab1_right:AddToggle('MyToggle', {
     Text = 'White_Screen',
     Default = false, 
     Tooltip = 'White_Screen',
     Callback = function(t)
-    _G.White_Screen = t
+        _G.White_Screen = t
     end
 })
 
 
-
 spawn(function()
-while wait() do
-if _G.White_Screen then
-    game:GetService("RunService"):Set3dRenderingEnabled(false)
-else
-    game:GetService("RunService"):Set3dRenderingEnabled(true)
-end
-                end
+    while true do
+        wait()
+      
+        if _G.White_Screen then
+            game:GetService("RunService"):Set3dRenderingEnabled(false)
+        else
+            game:GetService("RunService"):Set3dRenderingEnabled(true)
         end
-  end)
+    end
+end)
+
 
 
 ThemeManager:SetLibrary(Library)

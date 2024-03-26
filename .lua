@@ -132,7 +132,33 @@ end
     end
 })
 
-Tab1_left2:AddLabel("PaintingTool : 🟢") -- ถ้าไม่มี  🔴
+local toolLabels = {
+    PaintingTool = Tab1_left2:AddTextLabel("PaintingTool : ❌"),
+    BindTool = Tab1_left2:AddTextLabel("BindTool : ❌"),
+    ScalingTool = Tab1_left2:AddTextLabel("ScalingTool : ❌"),
+    PropertiesTool = Tab1_left2:AddTextLabel("PropertiesTool : ❌"),
+    TrowelTool = Tab1_left2:AddTextLabel("TrowelTool : ❌")
+}
+
+spawn(function()
+    while true do
+        wait()
+        pcall(function()
+            local Players = game:GetService("Players")
+            local LocalPlayer = Players.LocalPlayer
+            local Backpack = LocalPlayer.Backpack
+
+            for toolName, toolLabel in pairs(toolLabels) do
+                local toolExists = Backpack:FindFirstChild(toolName)
+                if toolExists then
+                    toolLabel:SetText(toolName .. " : ✅")
+                else
+                    toolLabel:SetText(toolName .. " : ❌")
+                end
+            end
+        end)
+    end
+end)
 
 
 

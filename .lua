@@ -132,34 +132,68 @@ end
     end
 })
 
-local toolLabels = {
-    PaintingTool = Tab1_left2:AddTextLabel("PaintingTool : ❌"),
-    BindTool = Tab1_left2:AddTextLabel("BindTool : ❌"),
-    ScalingTool = Tab1_left2:AddTextLabel("ScalingTool : ❌"),
-    PropertiesTool = Tab1_left2:AddTextLabel("PropertiesTool : ❌"),
-    TrowelTool = Tab1_left2:AddTextLabel("TrowelTool : ❌")
-}
+local a1 = Tab1_left2:AddLabel("PaintingTool : 🔴")
+local a2 =Tab1_left2:AddLabel("BindTool : 🔴")
+local a3 = Tab1_left2:AddLabel("ScalingTool : 🔴")
+local a4 = Tab1_left2:AddLabel("PropertiesTool : 🔴")
+local a5 = Tab1_left2:AddLabel("TrowelTool : 🔴")
+
 
 spawn(function()
-    while true do
-        wait()
-        pcall(function()
-            local Players = game:GetService("Players")
-            local LocalPlayer = Players.LocalPlayer
-            local Backpack = LocalPlayer.Backpack
-
-            for toolName, toolLabel in pairs(toolLabels) do
-                local toolExists = Backpack:FindFirstChild(toolName)
-                if toolExists then
-                    toolLabel:SetText(toolName .. " : ✅")
+        while wait() do
+            pcall(function()
+             if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("PaintingTool") then
+                   a1:SetText("PaintingTool : 🟢")
                 else
-                    toolLabel:SetText(toolName .. " : ❌")
+                  a1:SetText("PaintingTool : 🔴")
                 end
-            end
-        end)
-    end
 end)
-
+end
+end)
+spawn(function()
+        while wait() do
+            pcall(function()
+             if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("BindTool") then
+                   a2:SetText("BindTool : 🟢")
+                else
+                  a2:SetText("BindTool : 🔴")
+                end
+end)
+end
+end)
+spawn(function()
+        while wait() do
+            pcall(function()
+             if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("ScalingTool") then
+                   a3:SetText("ScalingTool : 🟢")
+                else
+                  a3:SetText("ScalingTool : 🔴")
+                end
+end)
+end
+end)
+spawn(function()
+        while wait() do
+            pcall(function()
+             if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("PropertiesTool") then
+                   a4:SetText("PropertiesTool : 🟢")
+                else
+                  a4:SetText("PropertiesTool : 🔴")
+                end
+end)
+end
+end)
+spawn(function()
+        while wait() do
+            pcall(function()
+             if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("TrowelTool") then
+                   a5:SetText("TrowelTool : 🟢")
+                else
+                  a5:SetText("TrowelTool : 🔴")
+                end
+end)
+end
+end)
 
 
 
